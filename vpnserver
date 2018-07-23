@@ -6,13 +6,14 @@ LOCK=/var/lock/subsys/vpnserver
 TAP_ADDR=10.100.10.1
 TAP_NETWORK=10.100.10.0/24
 SERVER_IP=[SERVER_IP]
+BRIDGENAME=[BRIDGENAME]
 test -x $DAEMON || exit 0
 case "$1" in
 start)
 $DAEMON start
 touch $LOCK
 sleep 1
-/sbin/ifconfig tap_soft $TAP_ADDR
+/sbin/ifconfig tap_${BRIDGENAME} $TAP_ADDR
 iptables -t nat -F
 iptables -t nat -A POSTROUTING -s ${TAP_NETWORK} -j SNAT --to-source ${SERVER_IP}
 ;;
@@ -25,7 +26,7 @@ $DAEMON stop
 sleep 3
 $DAEMON start
 sleep 1
-/sbin/ifconfig tap_soft $TAP_ADDR
+/sbin/ifconfig tap_${BRIDGENAME} $TAP_ADDR
 iptables -t nat -F
 iptables -t nat -A POSTROUTING -s ${TAP_NETWORK} -j SNAT --to-source ${SERVER_IP}
 ;;
