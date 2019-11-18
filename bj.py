@@ -139,17 +139,14 @@ def get_server_conf(account_data: AccountData) -> ConfigurationData:
 def get_wireguard_conf(private_key: str, address_1: str, address_2: str, public_key: str, endpoint: str) -> str:
     return f"""
 [Interface]
-PrivateKey = {private_key}
-DNS = 1.1.1.1
-DNS = 1.0.0.1
 Address = {address_1}
-Address = {address_2}
+DNS = 1.1.1.1
+PrivateKey = {private_key}
 
 [Peer]
-PublicKey = {public_key}
-AllowedIPs = 0.0.0.0/0
-AllowedIPs = ::/0
+AllowedIPs = 0.0.0.0/1, 128.0.0.0/1
 Endpoint = {endpoint}
+PublicKey = {public_key}
 """[1:-1]
 
 
