@@ -15,7 +15,7 @@ terms_of_service_url = "https://www.cloudflare.com/application/terms/"
 
 data_path = Path(".")
 identity_path = data_path.joinpath("wgcf-identity.json")
-config_path = data_path.joinpath("wgcf-profile.conf")
+config_path = data_path.joinpath("client.conf")
 
 default_headers = {"Accept-Encoding": "gzip",
                    "User-Agent": "okhttp/3.12.1"}
