@@ -194,3 +194,5 @@ if __name__ == "__main__":
 
     print("Creating WireGuard configuration...")
     create_conf(account_data, conf_data)
+
+    
